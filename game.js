@@ -3,10 +3,10 @@ let ctx = canvas.getContext("2d");
 
 // --- LOAD IMAGES ---
 let amitabhImg = new Image();
-amitabhImg.src = "amitabh.PNG";   // FIXED (case-sensitive)
+amitabhImg.src = "amitabh.PNG";   // FIXED CASE
 
 let flameImg = new Image();
-flameImg.src = "flame.PNG";       // FIXED (case-sensitive)
+flameImg.src = "flame.PNG";       // FIXED CASE
 
 // --- CHARACTER SETTINGS ---
 let amitabh = {
@@ -38,14 +38,15 @@ document.addEventListener("keydown", jump);
 canvas.addEventListener("mousedown", jump);
 canvas.addEventListener("touchstart", e => { e.preventDefault(); jump(); });
 
-// --- CREATE FIRE ---
+// --- CREATE FIRE EVERY 1.8 SECONDS ---
 setInterval(() => {
     if (!gameOver) {
         fires.push({
             x: 400,
             y: Math.random() * 450 + 50,
             width: 40,
-            height: 120
+            height: 120,
+            passed: false
         });
     }
 }, 1800);
@@ -57,6 +58,7 @@ function update() {
     amitabh.velocity += amitabh.gravity;
     amitabh.y += amitabh.velocity;
 
+    // stay on screen
     if (amitabh.y + amitabh.height > canvas.height) {
         endGame();
     }
@@ -65,9 +67,11 @@ function update() {
         amitabh.velocity = 0;
     }
 
+    // move fire
     fires.forEach(fire => {
         fire.x -= 3;
 
+        // collision
         if (
             amitabh.x < fire.x + fire.width &&
             amitabh.x + amitabh.width > fire.x &&
@@ -78,6 +82,7 @@ function update() {
             endGame();
         }
 
+        // score
         if (fire.x + fire.width < amitabh.x && !fire.passed) {
             score++;
             fire.passed = true;
@@ -108,7 +113,6 @@ function gameLoop() {
     draw();
     requestAnimationFrame(gameLoop);
 }
-
 gameLoop();
 
 // ---- GAME OVER ----
