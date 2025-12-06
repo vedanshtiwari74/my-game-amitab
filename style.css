@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+canvas {
+    background: linear-gradient(#001f3f, #000);
+    border: 2px solid white;
+}
+
+#gameOverScreen {
+    position: absolute;
+    background: rgba(0,0,0,0.85);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+}

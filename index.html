@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amitabh Fire Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="gameOverScreen">
+    <h1>Game Over</h1>
+    <p id="finalScore"></p>
+    <button onclick="restartGame()">Restart</button>
+</div>
+
+<canvas id="gameCanvas" width="400" height="600"></canvas>
+
+<audio id="fireSound" src="firehit.mp3"></audio>
+
+<script src="game.js"></script>
+</body>
+</html>
